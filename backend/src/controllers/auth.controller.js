@@ -1,19 +1,20 @@
 import { registerService, loginService } from "../services/auth.service.js";
+import { success, failure } from "../utils/response.js";
 
 export async function registerController(req, res) {
   try {
     const result = await registerService(req.body);
-    res.status(201).json(result);
+    return success(res, result, "User registered successfully.", 201);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    return failure(res, err.message, 400);
   }
 }
 
 export async function loginController(req, res) {
   try {
     const result = await loginService(req.body);
-    res.status(200).json(result);
+    return success(res, result, "User logged in successfully.", 200);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    return failure(res, err.message, 400);
   }
 }
