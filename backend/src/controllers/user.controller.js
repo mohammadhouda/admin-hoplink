@@ -54,10 +54,6 @@ export async function createUserController(req, res) {
     try {
         const { name, email, password, role, phone, avatarUrl, city, country, bio } = req.body;
 
-        if (!name || !email || !password || !role) {
-            return failure(res, "Name, email, password, and role are required.", 400);
-        }
-
         const newUser = await createUserService({ name, email, password, role, phone, avatarUrl, city, country, bio });
 
         return success(res, newUser, "User created successfully.", 201);
