@@ -115,7 +115,7 @@ export async function updateUserService(id, updateData) {
     });
 
     if (emailOwner && emailOwner.id !== userId) {
-      throw new Error("Email already in use by another user.");
+      throw new Error("Email already in use.");
     }
   }
 
