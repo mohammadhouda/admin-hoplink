@@ -6,15 +6,18 @@ import charityRoutes from "./routes/charity.routes.js";
 import userRoutes from "./routes/user.route.js";
 import authMiddleware from "./middlewares/auth.js";
 import restrictTo from "./middlewares/restrictTo.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
 app.use(cors({
-  origin: "*",
+  origin: "http://localhost:3000",
+  credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
+app.use(cookieParser());
 app.use(express.json());
 
 
