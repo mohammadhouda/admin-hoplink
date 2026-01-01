@@ -60,7 +60,6 @@ export async function loginService({ email, password }) {
   return { user, accessToken, refreshToken };
 }
 
-// test 
 export async function refreshTokenService(oldRefreshToken) {
   const storedToken = await prisma.refreshToken.findUnique({
     where: { token: oldRefreshToken },
