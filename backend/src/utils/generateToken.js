@@ -7,3 +7,8 @@ export function generateToken(user_id, role="USER") {
     { expiresIn: "20m" }
   );
 }
+
+export function generateRefreshToken() {
+  return crypto.randomBytes(40).toString('hex');
+}
+

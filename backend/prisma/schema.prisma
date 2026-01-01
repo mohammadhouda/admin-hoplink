@@ -23,7 +23,10 @@ model User {
 
   projects       Project[]
   applications   Application[]
+
+  refreshTokens  RefreshToken[]
 }
+
 
 
 model UserProfile {
@@ -129,6 +132,18 @@ model Application {
 
   @@unique([userId, projectId])
   @@index([projectId])
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([token])
 }
 
 
